@@ -1,0 +1,81 @@
+" General settings
+"-------------------------------------------------------------------------------
+" set screen color scheme
+
+color murphy
+set background=dark
+
+" backspace: specifies what , CTRL-W, etc. can do in Insert mode
+set bs=2
+
+" whichwrap: list of flags specifying which commands wrap to another line
+set ww=[,]
+
+" winminheight: minimal number of lines used for any window
+set wmh=0
+set wmw=0
+
+" history: how many command lines are remembered
+set hi=50
+
+" ruler: show cursor position below each window
+set ru
+
+" showcmd: show (partial) command keys in the status line
+set sc
+
+" incsearch: show match for partly typed search command
+set is
+
+" number: show the line number for each line
+set nu
+
+" do not keep a backup file, use versions instead
+set nobackup
+
+" Set the syntax higlighting to perl
+set syn="perl"
+
+set vb t_vb= 
+
+syn on
+
+map  j_ " when editing muliple file with :sp you can switch between them
+map  k_ " with <ctrl>-j and <ctrl>-k
+map  :!/usr/bin/perl -c %
+map  :make
+
+imap  <Esc>
+
+au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
+
+" ------------------------------------------------------------------------------
+augroup python
+    autocmd BufReadPre,FileReadPre      *.py let python_highlight_numbers = 1
+    autocmd BufReadPre,FileReadPre      *.py let python_highlight_builtins = 1
+    autocmd BufReadPre,FileReadPre      *.py let python_highlight_exceptions = 1
+    autocmd BufReadPre,FileReadPre      *.py set expandtab
+    autocmd BufReadPre,FileReadPre      *.py set autoindent
+"   autocmd BufReadPre,FileReadPre      *.py set copyindent
+    autocmd BufReadPre,FileReadPre      *.py set sw=4
+    autocmd BufReadPre,FileReadPre      *.py set ts=4
+    autocmd BufReadPre,FileReadPre      *.py set sts=4
+    autocmd BufReadPre,FileReadPre      *.py set smarttab
+augroup END
+
+augroup perl
+    autocmd BufReadPre,FileReadPre      *.pl,*.pm set sw=4
+    autocmd BufReadPre,FileReadPre      *.pl,*.pm set ts=4
+    autocmd BufReadPre,FileReadPre      *.pl,*.pm set sts=4
+    "let perl_fold=1
+augroup END
+
+augroup asciidoc
+    au!
+    autocmd BufReadPre,FileReadPre      *.asd set tw=68
+    autocmd BufReadPre,FileReadPre      *.asd syn on
+    autocmd BufReadPre,FileReadPre      *.asd set syntax=asciidoc
+    autocmd BufReadPre,FileReadPre      *.asd setlocal spell spelllang=en_us
+augroup END
+
+autocmd! BufNewFile *.sh silent! 0r ~/.vim/skel/tmpl.%:e
