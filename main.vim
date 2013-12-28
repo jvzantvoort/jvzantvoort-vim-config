@@ -9,13 +9,6 @@
 "
 " ==============================================================================
 
-" Pathogen load
-filetype off
-
-filetype plugin indent on
-
-let g:pymode_folding = 0
-
 " General settings
 "-------------------------------------------------------------------------------
 colors murphy
