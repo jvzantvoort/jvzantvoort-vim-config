@@ -13,6 +13,8 @@
 "-------------------------------------------------------------------------------
 colors murphy
 
+filetype plugin on
+
 "-------------------------------------------------------------------------------
 " backspace:             specifies what <BS>, CTRL-W, etc. can do in Insert mode
 set bs=2
