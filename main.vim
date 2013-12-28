@@ -55,6 +55,7 @@ set vb t_vb=
 " I don't like search highlighting
 set nohls
 
+syn on
 " OS Specific settings
 "     This allows for OS specific overrides like binary locations etc.
 "-------------------------------------------------------------------------------
