@@ -12,9 +12,6 @@
 " Pathogen load
 filetype off
 
-call pathogen#infect()
-call pathogen#helptags()
-
 filetype plugin indent on
 
 let g:pymode_folding = 0
@@ -189,6 +186,10 @@ else
 endif
 
 let s:DistCFG = expand('~/.vimrc.'.s:uname)
+
+for fpath in split(globpath('~/.vim/settings', '*.vim'), '\n')
+  exe 'source' fpath
+endfor
 
 if filereadable(s:DistCFG)
   exe "source " . s:DistCFG
