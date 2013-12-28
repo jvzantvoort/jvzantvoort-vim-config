@@ -92,6 +92,8 @@ set list
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
+autocmd! BufNewFile *.sh silent! 0r ~/.vim/skel/tmpl.%:e
+
 "-------------------------------------------------------------------------------
 " end of file
 "-------------------------------------------------------------------------------
