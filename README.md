@@ -23,9 +23,15 @@ Easy install for pathogen:
     % curl -Sso ~/.vim/autoload/pathogen.vim \
         https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
+Add the following line to '~/.vim/settings/local.vim'
+
+    execute pathogen#infect()
+
+
 Similar for snipMate:
     % cd ~/.vim/bundle
     % git clone https://github.com/tomtom/tlib_vim.git
     % git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
     % git clone https://github.com/garbas/vim-snipmate.git
+
 
