@@ -115,10 +115,10 @@ snippet rini
 	    foreach ( split /(?:\015{1,2}\012|\015|\012)/, $contents )
 	    {
 	        next if /^\s*(?:\#|\;|$)/;
-	        if ( /^\s*\[(.+?)\]\s*$/ ) { $ns = $1; next; }
+	        if ( /^\s*\[(.+?)\]\s*$/ ) { $ns = $${0:1}; next; }
 	        if ( /^\s*([^=]+?)\s*=\s*(.*?)\s*$/ )
 	        {
-	            $retv{ $ns }{ $1 } = $2;
+	            $retv{ $ns }{ $${0:1} } = $${0:2};
 	            next;
 	        }
 	        printf "ERROR: read_ini: error do not know %s\n", $_;
@@ -161,10 +161,10 @@ snippet wget
 	
 	    if ($buf =~ m,^HTTP/\d+\.\d+\s+(\d+)[^\012]*\012,)
 	    {
-	        my $code = $1;
+	        my $code = $${0:1};
 	        if ($code =~ /^30[1237]/ && $buf =~ /\012Location:\s*(\S+)/i)
 	        {
-	            print( "error: the wanted to redirect me to $1" );
+	            print( "error: the wanted to redirect me to $${0:1}" );
 	            return undef; # we don't do redirects
 	        }
 	        return undef unless $code =~ /^2/;

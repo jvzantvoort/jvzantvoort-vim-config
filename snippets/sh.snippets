@@ -20,7 +20,7 @@ snippet header
 	# --------------------------------------
 	# VARIABLES
 	# --------------------------------------
-	APPNAME="$(basename $0)"
+	APPNAME="$(basename $${0:0})"
 
 snippet pcl
 	#===============================================================================
@@ -43,10 +43,10 @@ snippet remark
 	#===  FUNCTION  ================================================================
 	#         NAME:  remark
 	#  DESCRIPTION:  simple function for printing information.
-	#        NOTES:  make sure you define APPNAME="$(basename $0)" for example like
+	#        NOTES:  make sure you define APPNAME="$(basename $${0:0})" for example like
 	#                this:
 	#
-	#                  APPNAME="$(basename $0)"
+	#                  APPNAME="$(basename $${0:0})"
 	#
 	#   PARAMETERS:  none
 	#      RETURNS:  0, oke
@@ -89,7 +89,7 @@ snippet mkst
 	  local TEMPLATE RETV
 	  TEMPLATE="${HOME}/tmp/stage.XXXXXXXX"
 	
-	  [[ -z "$1" ]] || TEMPLATE="$1"
+	  [[ -z "$${0:1}" ]] || TEMPLATE="$${0:1}"
 	
 	  STAGING_AREA=$(mktemp -d ${TEMPLATE})
 	  RETV=$?
