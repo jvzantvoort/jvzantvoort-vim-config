@@ -1,0 +1,106 @@
+snippet header
+	#!/bin/bash
+	#===============================================================================
+	#
+	#         FILE:  ${1:scriptname}
+	#
+	#        USAGE:  
+	#
+	#  DESCRIPTION:  ${2:description}
+	#
+	#      OPTIONS:  ---
+	# REQUIREMENTS:  ---
+	#         BUGS:  ---
+	#        NOTES:  ---
+	#       AUTHOR:  John van Zantvoort (jydawg), <john@vanzantvoort.org>
+	#      CREATED:
+	#     REVISION:
+	#===============================================================================
+	
+	# --------------------------------------
+	# VARIABLES
+	# --------------------------------------
+	APPNAME="$(basename $0)"
+
+snippet pcl
+	#===============================================================================
+	# Setup a clean path environment
+	#===============================================================================
+	PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:$PATH"
+	PATH=$(echo $PATH|sed -e "s,~,$HOME,g"|tr \: \\n|sort -u|tr \\n \:|sed 's/\:$//')
+	export PATH
+
+snippet main
+	#===============================================================================
+	# MAIN
+	#===============================================================================
+	$0
+	#===============================================================================
+	# END
+	#===============================================================================
+
+snippet remark
+	#===  FUNCTION  ================================================================
+	#         NAME:  remark
+	#  DESCRIPTION:  simple function for printing information.
+	#        NOTES:  make sure you define APPNAME="$(basename $0)" for example like
+	#                this:
+	#
+	#                  APPNAME="$(basename $0)"
+	#
+	#   PARAMETERS:  none
+	#      RETURNS:  0, oke
+	#                1, not oke
+	#===============================================================================
+	remark() {
+	  if /usr/bin/tty >/dev/null 2>&1
+	  then
+	    logger -is -t $APPNAME "$@"
+	  else
+	    logger -i -t $APPNAME "$@"
+	  fi
+	  return 0
+	} # end: remark
+
+snippet die
+	#===  FUNCTION  ================================================================
+	#         NAME:  die
+	#  DESCRIPTION:  shell version of the perl die
+	#   PARAMETERS:  none
+	#      RETURNS:  0, oke
+	#                1, not oke
+	#===============================================================================
+	die() {
+	  remark "DIED: $@"
+	  exit 8
+	} # end: die
+
+snippet mkst
+	#===  FUNCTION  ================================================================
+	#         NAME:  mkstaging_area
+	#  DESCRIPTION:  Creates a temporary staging area and set the variable
+	#                $STAGING_AREA to point to it
+	#   PARAMETERS:  STRING, mktemp template (optional)
+	#      RETURNS:  0, oke
+	#                1, not oke
+	#===============================================================================
+	mkstaging_area()
+	{
+	  local TEMPLATE RETV
+	  TEMPLATE="${HOME}/tmp/stage.XXXXXXXX"
+	
+	  [[ -z "$1" ]] || TEMPLATE="$1"
+	
+	  STAGING_AREA=$(mktemp -d ${TEMPLATE})
+	  RETV=$?
+	
+	  if [ $RETV == 0 ]
+	  then
+	    return 0
+	  else
+	    remark "mkstaging_area failed $RETV"
+	    return 1
+	  fi
+	
+	  return 0
+	} # end: mkstaging_area
