@@ -17,10 +17,13 @@ Hard link the vimrc
 
 ## Install pathogen and snipMate (optional)
 
-    % mkdir -p ~/.vim/autoload ~/.vim/bundle; \
+Easy install for pathogen:
+
+    % mkdir -p ~/.vim/autoload ~/.vim/bundle
     % curl -Sso ~/.vim/autoload/pathogen.vim \
         https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
+Similar for snipMate:
     % cd ~/.vim/bundle
     % git clone https://github.com/tomtom/tlib_vim.git
     % git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
