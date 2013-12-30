@@ -1,8 +1,17 @@
-" keybindings
-"-------------------------------------------------------------------------------
-map <C-J> <C-W>j<C-W>_ " when editing muliple file with :sp you can switch between them
-map <C-K> <C-W>k<C-W>_ " with <ctrl>-j and <ctrl>-k
-map <C-N> <Esc>:!/usr/bin/perl -c %<cr>
+"--------------------------------------------------------------------------
+"
+"         FILE:  .vim/settings/keybindings.vim
+"
+"  DESCRIPTION:  Some usefull keybindings
+"
+"      CREATED:  Mon, 30 Dec 2013
+"
+"--------------------------------------------------------------------------
+
+" when editing muliple file with :sp you can switch between them
+" with <ctrl>-j and <ctrl>-k
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
 
 nmap <leader>et :tabe %%
 nmap <leader>n  :tabn<cr>
@@ -20,3 +29,6 @@ else
   nmap <leader>p  :wincmd k<cr>
 endif
 
+"--------------------------------------------------------------------------
+" END
+"--------------------------------------------------------------------------

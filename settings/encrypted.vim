@@ -1,6 +1,14 @@
-" Transparent editing of gpg encrypted files.
-" By Wouter Hanegraaff <wouter@blub.net>
-"-------------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"
+"         FILE:  .vim/settings/encrypted.vim
+"
+"  DESCRIPTION:  Transparent editing of gpg encrypted files.
+"                                    By Wouter Hanegraaff <wouter@blub.net>
+"
+"      CREATED:  Mon, 30 Dec 2013
+"
+"--------------------------------------------------------------------------
+
 augroup encrypted
     au!
 
@@ -26,3 +34,6 @@ augroup encrypted
     autocmd VimLeave                      *.gpg !clear
 augroup END
 
+"--------------------------------------------------------------------------
+" END
+"--------------------------------------------------------------------------
