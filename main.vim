@@ -81,13 +81,6 @@ if filereadable(s:DistCFG)
   exe "source " . s:DistCFG
 endif
 
-"---------------------------------------
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
-
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
-
 autocmd! BufNewFile *.sh silent! 0r ~/.vim/skel/tmpl.%:e
 
 "-------------------------------------------------------------------------------
