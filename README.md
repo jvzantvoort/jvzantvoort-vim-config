@@ -29,6 +29,7 @@ Add the following line to '~/.vim/settings/local.vim'
 
 
 Similar for snipMate:
+
     % cd ~/.vim/bundle
     % git clone https://github.com/tomtom/tlib_vim.git
     % git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
