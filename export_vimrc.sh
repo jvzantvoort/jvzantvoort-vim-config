@@ -127,6 +127,12 @@ git_exp "https://github.com/garbas/vim-snipmate.git" \
 curl -Sso $STAGING_AREA/$OUTPUTDIR/.vim/autoload/pathogen.vim \
     https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
+[[ -f "$STAGING_AREA/$OUTPUTDIR/.vim/.gitignore" ]] && \
+    rm -f "$STAGING_AREA/$OUTPUTDIR/.vim/.gitignore"
+
+[[ -f "$STAGING_AREA/$OUTPUTDIR/.vim/export_vimrc.sh" ]] && \
+    rm -f "$STAGING_AREA/$OUTPUTDIR/.vim/export_vimrc.sh"
+
 cat << EOF > $STAGING_AREA/$OUTPUTDIR/.vim/settings/local.vim
 
 execute pathogen#infect()
