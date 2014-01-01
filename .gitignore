@@ -1,0 +1,3 @@
+autoload
+bundle
+settings/local.vim
