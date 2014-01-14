@@ -9,7 +9,7 @@
 "--------------------------------------------------------------------------
 
 " set screen color scheme
-function CheckRo()
+function! CheckRo()
   if &readonly
     color pablo
   endif
