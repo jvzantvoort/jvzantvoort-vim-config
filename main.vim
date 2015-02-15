@@ -62,16 +62,19 @@ syn on
 
 " set a default
 let s:uname = "default"
+let s:hostname = "default"
 
 if has("win32")
   let s:uname = "win32"
 else
   if has("unix")
     let s:uname = substitute(system('uname -s'), "\n", "", "")
+    let s:hostname = substitute(system('uname -n'), "\n", "", "")
   endif
 endif
 
 let s:DistCFG = expand('~/.vim/os/'.s:uname.'.vim')
+let s:HostCFG = expand('~/.vim/hosts/'.s:hostname.'.vim')
 
 for fpath in split(globpath('~/.vim/settings', '*.vim'), '\n')
   exe 'source' fpath
@@ -79,6 +82,10 @@ endfor
 
 if filereadable(s:DistCFG)
   exe "source " . s:DistCFG
+endif
+
+if filereadable(s:HostCFG)
+  exe "source " . s:HostCFG
 endif
 
 autocmd! BufNewFile *.sh silent! 0r ~/.vim/skel/tmpl.%:e
