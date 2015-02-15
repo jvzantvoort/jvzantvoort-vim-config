@@ -12,6 +12,12 @@
 # --------------------------------------
 APPNAME="$(basename $0)"
 
+# If not in jenkins
+if [ ! "$WORKSPACE" ]
+then
+  WORKSPACE="$HOME/tmp"
+fi
+
 #===  FUNCTION  ================================================================
 #         NAME:  remark
 #  DESCRIPTION:  simple function for printing information.
@@ -25,13 +31,7 @@ APPNAME="$(basename $0)"
 #                1, not oke
 #===============================================================================
 remark() {
-  if /usr/bin/tty >/dev/null 2>&1
-  then
-    logger -is -t $APPNAME "$@"
-  else
-    logger -i -t $APPNAME "$@"
-  fi
-  return 0
+  echo "$APPNAME: $@"
 } # end: remark
 
 #===  FUNCTION  ================================================================
@@ -57,7 +57,7 @@ die() {
 mkstaging_area()
 {
   local TEMPLATE RETV
-  TEMPLATE="${HOME}/tmp/stage.XXXXXXXX"
+  TEMPLATE="${WORKSPACE}/jvzantvoort-vim-config.XXXXXXXX"
 
   [[ -z "$1" ]] || TEMPLATE="$1"
 
@@ -97,6 +97,8 @@ git_exp()
     mkdir -p $DESTDIR
     cd $BASENAME
     git archive --format=tar HEAD | tar -xf - -C $DESTDIR
+    cd ..
+    rm -rf "${BASENAME}"
 } # end: git_exp
 
 #===============================================================================
@@ -111,9 +113,7 @@ mkstaging_area || die "mkstaging_area failed"
 mkdir -p $STAGING_AREA/src || die "cannot create src dir"
 mkdir -p $STAGING_AREA/$OUTPUTDIR/.vim/autoload || die "autoload dir not created"
 mkdir -p $STAGING_AREA/$OUTPUTDIR/.vim/bundle || die "bundle dir not created"
-
-git_exp "https://github.com/jvzantvoort/jvzantvoort-vim-config.git" \
-     "$STAGING_AREA/$OUTPUTDIR/.vim"
+git archive --format=tar HEAD | tar -xf - -C "$STAGING_AREA/$OUTPUTDIR/.vim"
 
 git_exp "https://github.com/tomtom/tlib_vim.git" \
      "$STAGING_AREA/$OUTPUTDIR/.vim/bundle/tlib_vim"
@@ -141,7 +141,7 @@ EOF
 
 cd $STAGING_AREA
 
-tar -jcf $HOME/${OUTPUTDIR}.tar.bz2 $OUTPUTDIR
+tar -jcf $WORKSPACE/${OUTPUTDIR}.tar.bz2 $OUTPUTDIR
 cd
 rm -rf $STAGING_AREA
 
