@@ -23,8 +23,8 @@ Hard link the vimrc
 Easy install for pathogen:
 
     % mkdir -p ~/.vim/autoload ~/.vim/bundle
-    % curl -Sso ~/.vim/autoload/pathogen.vim \
-        https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+    % curl -LSso ~/.vim/autoload/pathogen.vim \
+        https://tpo.pe/pathogen.vim
 
 Add the following line to '~/.vim/settings/local.vim'
 

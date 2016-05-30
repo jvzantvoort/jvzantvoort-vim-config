@@ -107,6 +107,9 @@ git_exp()
 TIMESTAMP=$(date +%Y%m%d%H%M%S)
 OUTPUTDIR="vimconfig_${TIMESTAMP}"
 remark "create staging area"
+
+[[ -d "${WORKSPACE}" ]] || mkdir -p "${WORKSPACE}"
+
 mkstaging_area || die "mkstaging_area failed"
 [[ -z "$STAGING_AREA" ]] && die "STAGING_AREA variable is empty"
 
@@ -124,8 +127,11 @@ git_exp "https://github.com/MarcWeber/vim-addon-mw-utils.git" \
 git_exp "https://github.com/garbas/vim-snipmate.git" \
      "$STAGING_AREA/$OUTPUTDIR/.vim/bundle/vim-snipmate"
 
-curl -Sso $STAGING_AREA/$OUTPUTDIR/.vim/autoload/pathogen.vim \
-    https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+git_exp "https://github.com/scrooloose/nerdtree.git" \
+     "$STAGING_AREA/$OUTPUTDIR/.vim/bundle/nerdtree"
+
+curl -LSso $STAGING_AREA/$OUTPUTDIR/.vim/autoload/pathogen.vim \
+        https://tpo.pe/pathogen.vim
 
 [[ -f "$STAGING_AREA/$OUTPUTDIR/.vim/.gitignore" ]] && \
     rm -f "$STAGING_AREA/$OUTPUTDIR/.vim/.gitignore"
@@ -144,6 +150,7 @@ cd $STAGING_AREA
 tar -jcf $WORKSPACE/${OUTPUTDIR}.tar.bz2 $OUTPUTDIR
 cd
 rm -rf $STAGING_AREA
+echo "check results in $WORKSPACE/${OUTPUTDIR}.tar.bz2"
 
 #===============================================================================
 # END
