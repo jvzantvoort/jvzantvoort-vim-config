@@ -109,6 +109,7 @@ function __mkdirp()
 [[ "$(basename $CONST_SCRIPTDIR)" = ".vim" ]] || die "this is not a vim directory"
 
 [[ -e "$HOME/.vimrc" ]] && mv -v "$HOME/.vimrc" "$HOME/.vimrc.orig"
+ln -s "${CONST_SCRIPTDIR}/main.vim" "$HOME/.vimrc"
 
 __mkdirp $CONST_SCRIPTDIR/autoload || die "failed to create autoload directory"
 __mkdirp $CONST_SCRIPTDIR/bundle   || die "failed to create bundle directory"

@@ -38,4 +38,7 @@ Similar for snipMate:
     % git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
     % git clone https://github.com/garbas/vim-snipmate.git
 
+For the lazy:
 
+    % cd ~/.vim
+    % ./bootstrap.sh
