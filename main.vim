@@ -88,8 +88,6 @@ if filereadable(s:HostCFG)
   exe "source " . s:HostCFG
 endif
 
-autocmd! BufNewFile *.sh silent! 0r ~/.vim/skel/tmpl.%:e
-
 "-------------------------------------------------------------------------------
 " end of file
 "-------------------------------------------------------------------------------
