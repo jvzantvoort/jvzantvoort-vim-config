@@ -114,24 +114,10 @@ ln -s "${CONST_SCRIPTDIR}/main.vim" "$HOME/.vimrc"
 __mkdirp $CONST_SCRIPTDIR/autoload || die "failed to create autoload directory"
 __mkdirp $CONST_SCRIPTDIR/bundle   || die "failed to create bundle directory"
 
-curl -LSso $CONST_SCRIPTDIR/autoload/pathogen.vim ${CONST_URL_PATHOGEN}
-cat << EOF > ${CONST_SCRIPTDIR}/settings/local.vim
-
-execute pathogen#infect()
-
-EOF
-
-git_clone "https://github.com/tomtom/tlib_vim.git" \
+git_clone "https://github.com/VundleVim/Vundle.vim.git" \
      "${CONST_SCRIPTDIR}/bundle"
 
-git_clone "https://github.com/MarcWeber/vim-addon-mw-utils.git" \
-     "${CONST_SCRIPTDIR}/bundle"
-
-git_clone "https://github.com/garbas/vim-snipmate.git" \
-     "${CONST_SCRIPTDIR}/bundle"
-
-git_clone "https://github.com/scrooloose/nerdtree.git" \
-     "${CONST_SCRIPTDIR}/bundle"
+vim +PluginInstall +qall
 
 #===============================================================================
 # END
