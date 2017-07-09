@@ -28,9 +28,10 @@ else
   nmap <leader>n  :wincmd j<cr>
   nmap <leader>p  :wincmd k<cr>
 endif
-nmap <leader>v :tabedit $HOME/.notes<CR>
 
-nnoremap <C-e> :NERDTreeToggle<CR>
+nmap <leader>t :call TakeNote()<CR>
+
+nnoremap <leader>o :NERDTreeToggle<CR>
 
 "--------------------------------------------------------------------------
 " END
