@@ -14,13 +14,22 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
-Plugin 'garbas/vim-snipmate.git'
+" vim: interpret a file by function and cache file automatically
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
-Plugin 'scrooloose/nerdtree.git'
+
+" Some utility functions for VIM
 Plugin 'tomtom/tlib_vim.git'
+
+" snipMate.vim aims to be a concise vim script that implements some of
+" TextMate's snippets features in Vim.
+Plugin 'garbas/vim-snipmate.git'
+
+" A tree explorer plugin for vim.
+Plugin 'scrooloose/nerdtree.git'
+
+" fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
-" Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+
 call vundle#end()
 filetype plugin indent on    " required
 
@@ -29,6 +38,17 @@ filetype plugin indent on    " required
 colors murphy
 
 filetype plugin on
+
+" Search down into subfolders
+set path+=**
+
+" Display all the files when matching
+set wildmenu
+
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
 
 "-------------------------------------------------------------------------------
 " backspace:             specifies what <BS>, CTRL-W, etc. can do in Insert mode
