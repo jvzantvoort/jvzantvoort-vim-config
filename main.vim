@@ -4,11 +4,11 @@
 "
 "  DESCRIPTION:  My current vimrc
 "
-"      VERSION:  1.0
 "      CREATED:  05/30/2012 11:00:30 AM
 "
 " ==============================================================================
 
+" plugins {{{
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
@@ -32,46 +32,51 @@ Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 filetype plugin indent on    " required
+" }}}
 
-" General settings
+" General settings {{{
 "-------------------------------------------------------------------------------
-colors murphy
+colors molokai
 
-filetype plugin on
-
-" Search down into subfolders
+"   List of directories which will be searched when using the find type commands
 set path+=**
 
 " Display all the files when matching
 set wildmenu
 
+" - check |netrw-browse-maps| for more mappings
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 
-"-------------------------------------------------------------------------------
+" When on, splitting a window will put the new window below the current one.
+set splitbelow
+
+" When on, splitting a window will put the new window right of the current one.
+set splitright
+
 " backspace:             specifies what <BS>, CTRL-W, etc. can do in Insert mode
-set bs=2
+set backspace=2
 
 " whichwrap:        list of flags specifying which commands wrap to another line
-set ww=[,]
+set whichwrap=[,]
 
 " winminheight:                      minimal number of lines used for any window
-set wmh=0
-set wmw=0
+set winminheight=0
+set winminwidth=0
 
 " history:                                 how many command lines are remembered 
-set hi=50
+set history=50
 
 " ruler:                                  show cursor position below each window
-set ru
+set ruler
 
 " showcmd:                        show (partial) command keys in the status line
-set sc
+set showcmd
 
 " incsearch:                          show match for partly typed search command
-set is
+set incsearch
 
 " number:                                     show the line number for each line
 set nu
@@ -82,19 +87,23 @@ set nu
 set nobackup                   " do not keep a backup file, use versions instead
 
 set nocompatible
-"-------------------------------------------------------------------------------
 
 " disable beep and flash
 set vb t_vb=
 
 " I don't like search highlighting
-set nohls
+set nohlsearch
 
-syn on
-" OS Specific settings
-"     This allows for OS specific overrides like binary locations etc.
-"-------------------------------------------------------------------------------
+syntax on
+" }}}
 
+" load '~/.vim/settings/' {{{
+for fpath in split(globpath('~/.vim/settings', '*.vim'), '\n')
+  exe 'source' fpath
+endfor
+" }}}
+
+" Local host/os specific settings {{{
 " set a default
 let s:uname = "default"
 let s:hostname = "default"
@@ -111,10 +120,6 @@ endif
 let s:DistCFG = expand('~/.vim/os/'.s:uname.'.vim')
 let s:HostCFG = expand('~/.vim/hosts/'.s:hostname.'.vim')
 
-for fpath in split(globpath('~/.vim/settings', '*.vim'), '\n')
-  exe 'source' fpath
-endfor
-
 if filereadable(s:DistCFG)
   exe "source " . s:DistCFG
 endif
@@ -123,6 +128,5 @@ if filereadable(s:HostCFG)
   exe "source " . s:HostCFG
 endif
 
-"-------------------------------------------------------------------------------
-" end of file
-"-------------------------------------------------------------------------------
+" }}}
+" vim: foldmethod=marker
