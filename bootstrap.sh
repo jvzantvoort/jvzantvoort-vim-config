@@ -7,10 +7,14 @@
 #
 #===============================================================================
 
+function realpath() {
+  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 # --------------------------------------
 # VARIABLES
 # --------------------------------------
-CONST_SCRIPTFILE="$(readlink -f $0)"
+CONST_SCRIPTFILE="$(realpath $0)"
 CONST_SCRIPTDIR="$(dirname $CONST_SCRIPTFILE)"
 CONST_APPNAME="$(basename $CONST_SCRIPTFILE)"
 

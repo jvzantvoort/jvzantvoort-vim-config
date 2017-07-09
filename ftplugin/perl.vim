@@ -18,6 +18,7 @@ setlocal smarttab
 setlocal sts=4
 setlocal sw=4
 setlocal ts=4
+let perl_fold=1
 
 " keybindings for perl
 "--------------------------------------------------------------------------

@@ -1,30 +1,21 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/ftplugin/python.vim
+"         FILE:  .vim/ftplugin/asciidoc.vim
 "
-"  DESCRIPTION:  Settings for editing python scripts
+"  DESCRIPTION:  Some helpfull settings when writing asciidoc
 "
 "      CREATED:  Mon, 30 Dec 2013
 "
 "--------------------------------------------------------------------------
 
+
 if exists("b:did_ftplugin") | finish | endif
 let b:did_ftplugin = 1
 
-let python_highlight_builtins = 1
-let python_highlight_exceptions = 1
-let python_highlight_numbers = 1
-
-" compiler pylint
-setlocal shiftwidth=4
-setlocal autoindent
-setlocal expandtab
-setlocal smarttab
-setlocal sts=4
-setlocal sw=4
-setlocal ts=4
-setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+setlocal tw=68
+setlocal spell spelllang=en_us
 
 "--------------------------------------------------------------------------
 " END
 "--------------------------------------------------------------------------
+
