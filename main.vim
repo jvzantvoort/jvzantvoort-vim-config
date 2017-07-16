@@ -14,6 +14,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
+Plugin 'VundleVim/Vundle.vim.git'
+
 " vim: interpret a file by function and cache file automatically
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
 
