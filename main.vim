@@ -29,10 +29,13 @@ Plugin 'garbas/vim-snipmate.git'
 " A tree explorer plugin for vim.
 Plugin 'scrooloose/nerdtree.git'
 
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
-if &term=~'xterm-256color'
+if &term=~'xterm-256color' || &term=~'putty-256color'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
     if !exists("g:airline_symbols")
@@ -40,6 +43,7 @@ if &term=~'xterm-256color'
     endif
     let g:airline_theme="luna"
     let g:airline_powerline_fonts=1
+    let g:syntastic_error_symbol = '?'
     let g:airline#extensions#branch#empty_message  =  "no .git"
     let g:airline#extensions#whitespace#enabled    =  0
     let g:airline#extensions#syntastic#enabled     =  1
@@ -47,6 +51,10 @@ if &term=~'xterm-256color'
     let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
     let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
     let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
+    " let g:syntastic_error_symbol = '✘'
+    " let g:syntastic_warning_symbol = "▲"
+    let g:airline_powerline_fonts = 1
+
 endif
 
 call vundle#end()
