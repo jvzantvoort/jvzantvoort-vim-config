@@ -9,58 +9,7 @@
 " ==============================================================================
 
 " plugins {{{
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim.git'
-
-" vim: interpret a file by function and cache file automatically
-Plugin 'MarcWeber/vim-addon-mw-utils.git'
-
-" Some utility functions for VIM
-Plugin 'tomtom/tlib_vim.git'
-
-" snipMate.vim aims to be a concise vim script that implements some of
-" TextMate's snippets features in Vim.
-Plugin 'garbas/vim-snipmate.git'
-
-" A tree explorer plugin for vim.
-Plugin 'scrooloose/nerdtree.git'
-
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-
-" fugitive.vim: a Git wrapper so awesome, it should be illegal
-Plugin 'tpope/vim-fugitive'
-
-Plugin 'kien/ctrlp.vim'
-
-if &term=~'xterm-256color' || &term=~'putty-256color'
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    if !exists("g:airline_symbols")
-      let g:airline_symbols = {}
-    endif
-    let g:airline_theme="luna"
-    let g:airline_powerline_fonts=1
-    let g:syntastic_error_symbol = '?'
-    let g:airline#extensions#branch#empty_message  =  "no .git"
-    let g:airline#extensions#whitespace#enabled    =  0
-    let g:airline#extensions#syntastic#enabled     =  1
-    let g:airline#extensions#tabline#enabled       =  1
-    let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
-    let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
-    let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
-    " let g:syntastic_error_symbol = '✘'
-    " let g:syntastic_warning_symbol = "▲"
-    let g:airline_powerline_fonts = 1
-
-endif
-
-call vundle#end()
-filetype plugin indent on    " required
+source ~/.vim/plugins.vim
 " }}}
 
 " General settings {{{
