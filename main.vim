@@ -63,7 +63,6 @@ filetype plugin indent on    " required
 
 " General settings {{{
 "-------------------------------------------------------------------------------
-colors molokai
 
 "   List of directories which will be searched when using the find type commands
 set path+=**

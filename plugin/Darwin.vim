@@ -33,7 +33,6 @@ endif
 " set fonts and colors
 " --------------------------------------
 set guifont=Monaco:h12
-colorscheme blackboard
 set transparency=15
 let g:transparency = &transparency
 nnoremap gz :set fullscreen! columns=1000 transparency=0<cr>

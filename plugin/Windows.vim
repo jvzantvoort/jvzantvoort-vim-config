@@ -24,7 +24,6 @@ if !has("gui_running")             | finish | endif
 " set fonts and colors
 " --------------------------------------
 set guifont=Courier_New:h10:cANSI
-colorscheme blackboard
 
 " keyboard mappings
 " --------------------------------------
