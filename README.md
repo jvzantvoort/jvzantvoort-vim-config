@@ -31,3 +31,5 @@ For the lazy:
 
     % cd ~/.vim
     % ./bootstrap.sh
+
+[github page](http://jvzantvoort.github.io/jvzantvoort-vim-config/)
