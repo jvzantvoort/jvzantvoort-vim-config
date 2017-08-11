@@ -20,9 +20,11 @@
 " --------------------------------------
 if !has("gui_running")    | finish | endif
 if !has("unix")           | finish | endif
-let s:uname = system("uname -s")
+let s:uname = substitute(system('uname -s'), "\n", "", "")
 if !(s:uname == "Darwin") | finish | endif
 
+" There is a debate wheter this works....
+" if !has("macunix")        | finish | endif
 
 if &background == "dark"
     hi normal guibg=black
