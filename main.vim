@@ -35,6 +35,8 @@ Plugin 'tomasr/molokai'
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
+Plugin 'kien/ctrlp.vim'
+
 if &term=~'xterm-256color' || &term=~'putty-256color'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'

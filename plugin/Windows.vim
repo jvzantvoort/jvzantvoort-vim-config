@@ -37,3 +37,4 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 
 an 60.100 &Client.Note :call TakeNote()<CR>
 
+set wildignore+=*\\tmp\\*  " Windows
