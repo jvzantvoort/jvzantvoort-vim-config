@@ -18,8 +18,6 @@ CONST_SCRIPTFILE="$(realpath $0)"
 CONST_SCRIPTDIR="$(dirname $CONST_SCRIPTFILE)"
 CONST_APPNAME="$(basename $CONST_SCRIPTFILE)"
 
-CONST_URL_PATHOGEN="https://tpo.pe/pathogen.vim"
-
 # If not in jenkins
 if [ ! "$WORKSPACE" ]
 then

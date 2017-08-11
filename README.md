@@ -18,25 +18,14 @@ Hard link the vimrc
 
     % ln .vim/main.vim .vimrc
 
-## Install pathogen and snipMate (optional)
+## Install plugins
 
-Easy install for pathogen:
+Use Vundle to download the plugins:
 
-    % mkdir -p ~/.vim/autoload ~/.vim/bundle
-    % curl -LSso ~/.vim/autoload/pathogen.vim \
-        https://tpo.pe/pathogen.vim
-
-Add the following line to '~/.vim/settings/local.vim'
-
-    execute pathogen#infect()
-
-
-Similar for snipMate:
-
+    % mkdir -p ~/.vim/bundle
     % cd ~/.vim/bundle
-    % git clone https://github.com/tomtom/tlib_vim.git
-    % git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
-    % git clone https://github.com/garbas/vim-snipmate.git
+    % git clone https://github.com/VundleVim/Vundle.vim.git
+    % vim +PluginInstall +qall
 
 For the lazy:
 
