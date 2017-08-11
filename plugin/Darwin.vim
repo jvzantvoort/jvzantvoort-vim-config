@@ -32,7 +32,8 @@ endif
 
 " set fonts and colors
 " --------------------------------------
-set guifont=Monaco:h12
+" set guifont=Monaco:h12
+set guifont=Source\ Code\ Pro\ for\ Powerline:h12
 set transparency=15
 let g:transparency = &transparency
 nnoremap gz :set fullscreen! columns=1000 transparency=0<cr>
