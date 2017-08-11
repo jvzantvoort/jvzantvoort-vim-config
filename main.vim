@@ -124,12 +124,6 @@ set nohlsearch
 syntax on
 " }}}
 
-" load '~/.vim/settings/' {{{
-for fpath in split(globpath('~/.vim/settings', '*.vim'), '\n')
-  exe 'source' fpath
-endfor
-" }}}
-
 " Local host/os specific settings {{{
 " set a default
 let s:uname = "default"
