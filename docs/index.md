@@ -38,6 +38,18 @@ systems.
 * [solarized](https://github.com/altercation/vim-colors-solarized)
 * [molokai](https://github.com/tomasr/molokai)
 
+## Keybinding
+
+| Key        | action                     |
+|------------|----------------------------|
+| <C-J>      | move down in split screens |
+| <C-K>      | move up in split screens   |
+| <leader>et | Edit in a new tab          |
+| <leader>n  | Next tab                   |
+| <leader>p  | Previouse tab              |
+| <leader>t  | Take a note                |
+| <leader>o  | Toggle NERDTree            |
+
 # Installation
 
 To install the config simply move the old one away (just in case)
