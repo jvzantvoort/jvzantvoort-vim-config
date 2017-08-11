@@ -1,6 +1,6 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/settings/encrypted.vim
+"         FILE:  .vim/plugin/encrypted.vim
 "
 "  DESCRIPTION:  Transparent editing of gpg encrypted files.
 "                                    By Wouter Hanegraaff <wouter@blub.net>

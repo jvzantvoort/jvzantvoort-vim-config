@@ -1,6 +1,6 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/settings/fixdel.vim
+"         FILE:  .vim/plugin/fixdel.vim
 "
 "  DESCRIPTION:  Fix delete keys
 "

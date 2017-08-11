@@ -1,6 +1,6 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/settings/filetypes.vim
+"         FILE:  .vim/plugin/filetypes.vim
 "
 "  DESCRIPTION:  Some filetype enhancements
 "

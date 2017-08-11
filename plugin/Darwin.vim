@@ -37,11 +37,3 @@ colorscheme blackboard
 set transparency=15
 let g:transparency = &transparency
 nnoremap gz :set fullscreen! columns=1000 transparency=0<cr>
-
-" I don't like local languages in menu's
-" --------------------------------------
-set langmenu=en_US
-let $LANG = 'en_US'
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-

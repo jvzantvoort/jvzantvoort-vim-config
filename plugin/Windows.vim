@@ -24,13 +24,7 @@ if !has("gui_running")             | finish | endif
 " set fonts and colors
 " --------------------------------------
 set guifont=Courier_New:h10:cANSI
-
-" I don't like local languages in menu's
-" --------------------------------------
-set langmenu=en_US
-let $LANG = 'en_US'
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
+colorscheme blackboard
 
 " keyboard mappings
 " --------------------------------------

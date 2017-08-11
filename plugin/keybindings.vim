@@ -1,6 +1,6 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/settings/keybindings.vim
+"         FILE:  .vim/plugin/keybindings.vim
 "
 "  DESCRIPTION:  Some usefull keybindings
 "

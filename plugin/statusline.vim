@@ -1,6 +1,6 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/settings/statusline.vim
+"         FILE:  .vim/plugin/statusline.vim
 "
 "  DESCRIPTION:  Some status line coolness
 "

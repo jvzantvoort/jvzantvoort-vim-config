@@ -1,6 +1,6 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/settings/conway.vim
+"         FILE:  .vim/plugin/conway.vim
 "
 "  DESCRIPTION:  Some settings learned from Damian Conway's presentation.
 "
