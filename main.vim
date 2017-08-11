@@ -124,30 +124,4 @@ set nohlsearch
 syntax on
 " }}}
 
-" Local host/os specific settings {{{
-" set a default
-let s:uname = "default"
-let s:hostname = "default"
-
-if has("win32")
-  let s:uname = "win32"
-else
-  if has("unix")
-    let s:uname = substitute(system('uname -s'), "\n", "", "")
-    let s:hostname = substitute(system('uname -n'), "\n", "", "")
-  endif
-endif
-
-let s:DistCFG = expand('~/.vim/os/'.s:uname.'.vim')
-let s:HostCFG = expand('~/.vim/hosts/'.s:hostname.'.vim')
-
-if filereadable(s:DistCFG)
-  exe "source " . s:DistCFG
-endif
-
-if filereadable(s:HostCFG)
-  exe "source " . s:HostCFG
-endif
-
-" }}}
 " vim: foldmethod=marker
