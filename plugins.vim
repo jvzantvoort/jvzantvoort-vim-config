@@ -46,5 +46,44 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'kien/ctrlp.vim'
 
+" ------------------------------------------------------------------------------
+" Some platform/environment specific plugins
+" ------------------------------------------------------------------------------
+" set a default
+let s:uname = "default"
+
+if has("win32") || has("win64")
+  let s:uname = "windows"
+else
+  if has("unix")
+    let s:uname = substitute(system('uname -s'), "\n", "", "")
+  endif
+endif
+
+" On gui without Linux its worth messing around with airline
+" otherwise it just messes up the display.
+if has("gui_running") && !(s:uname == "Linux")
+    set laststatus=2
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    if !exists("g:airline_symbols")
+      let g:airline_symbols = {}
+    endif
+    let g:airline_theme="luna"
+    let g:airline_powerline_fonts=1
+    let g:syntastic_error_symbol = '?'
+    " let g:airline_symbols.space = "\ua0"
+    let g:airline#extensions#branch#empty_message  =  "no .git"
+    let g:airline#extensions#whitespace#enabled    =  0
+    let g:airline#extensions#syntastic#enabled     =  1
+    let g:airline#extensions#tabline#enabled       =  1
+    let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
+    let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
+    let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
+    " let g:syntastic_error_symbol = '✘'
+    " let g:syntastic_warning_symbol = "▲"
+    let g:airline_powerline_fonts = 1
+endif
+
 call vundle#end()
 filetype plugin indent on    " required
