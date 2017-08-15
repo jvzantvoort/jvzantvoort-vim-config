@@ -85,7 +85,11 @@ For the lazy:
 
 # Get the gui fonts to work
 
-```shell
+```
+
 git clone https://github.com/powerline/fonts.git --depth=1
+
 cd fonts/
-./install.sh```
+
+./install.sh
+```
