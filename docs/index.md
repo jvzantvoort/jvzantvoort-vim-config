@@ -1,9 +1,19 @@
+
+![vim logo goes here](vim_small.gif "Viva la vim")
+
+
 This is my config setup which works best for me.
 
 # Description
 
-The config is used to write `bash` and `python` scripts on various
-systems. 
+This is the config I use to write `bash` and `python` scripts on various
+platforms. Because I work with a mix of environments (RedHat, Mac,
+Windows) using the GUI and console variants using a number of
+terminal solutions (Putty, Terminal, gnome-terminal, tmux, etc.)
+some of the solutions are fairly conservative.
+[Vim-airline](https://github.com/vim-airline/vim-airline) looks
+great on MacVim but like confusing modem noise on another terminal
+solution.
 
 ## Plugins
 
