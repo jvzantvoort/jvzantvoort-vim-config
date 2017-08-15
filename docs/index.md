@@ -1,12 +1,5 @@
 
-![vim logo goes here](vim_small.gif "Viva la vim")
-
-
-This is my config setup which works best for me.
-
-# Description
-
-This is the config I use to write `bash` and `python` scripts on various
+![vim logo goes here](vim_small.gif "Viva la vim") This is the config I use to write `bash` and `python` scripts on various
 platforms. Because I work with a mix of environments (RedHat, Mac,
 Windows) using the GUI and console variants using a number of
 terminal solutions (Putty, Terminal, gnome-terminal, tmux, etc.)
