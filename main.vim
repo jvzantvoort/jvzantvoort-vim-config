@@ -8,8 +8,21 @@
 "
 " ==============================================================================
 
+let s:pluginCFG = expand('~/.vim/plugins.vim')
+let s:localCFG = expand('~/.vim/local.vim')
+let g:currentTime = strftime('%d-%b-%Y')
+let g:currentYear = strftime('%Y')
+
 " plugins {{{
-source ~/.vim/plugins.vim
+if filereadable(s:pluginCFG)
+    exe "source " . s:pluginCFG
+endif
+" }}}
+
+" local override {{{
+if filereadable(s:localCFG)
+    exe "source " . s:localCFG
+endif
 " }}}
 
 " General settings {{{
