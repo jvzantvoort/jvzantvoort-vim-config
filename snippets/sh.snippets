@@ -1,6 +1,6 @@
 snippet header
 	#!/bin/bash
-	#===============================================================================
+	# ---------------------------------------------------------------------------- #
 	#
 	#         FILE:  ${1:scriptname}
 	#
@@ -12,84 +12,41 @@ snippet header
 	# REQUIREMENTS:  ---
 	#         BUGS:  ---
 	#        NOTES:  ---
-	#       AUTHOR:  John van Zantvoort (jydawg), <john@vanzantvoort.org>
+	#       AUTHOR:  John van Zantvoort (jvzantvoort), <john@vanzantvoort.org>
 	#      CREATED:
 	#     REVISION:
-	#===============================================================================
+	# ---------------------------------------------------------------------------- #
 	
-	# --------------------------------------
-	# VARIABLES
-	# --------------------------------------
-	APPNAME="$(basename $${0:0})"
-
-snippet pcl
-	#===============================================================================
-	# Setup a clean path environment
-	#===============================================================================
-	PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:$PATH"
-	PATH=$(echo $PATH|sed -e "s,~,$HOME,g"|tr \: \\n|sort -u|tr \\n \:|sed 's/\:$//')
-	export PATH
-
+	declare -r CONST_SCRIPTPATH="$(readlink -f $0)"
+	declare -r CONST_SCRIPTNAME="$(basename $CONST_SCRIPTPATH .sh)"
+	declare -r CONST_SCRIPTDIR="$(dirname $CONST_SCRIPTPATH)"
+	declare -r CONST_FACILITY="local0"
+	declare -xr LANG="C"
+	
 snippet main
-	#===============================================================================
-	# MAIN
-	#===============================================================================
-	$0
-	#===============================================================================
-	# END
-	#===============================================================================
-
-snippet remark
-	#===  FUNCTION  ================================================================
-	#         NAME:  remark
-	#  DESCRIPTION:  simple function for printing information.
-	#        NOTES:  make sure you define APPNAME="$(basename $${0:0})" for example like
-	#                this:
-	#
-	#                  APPNAME="$(basename $${0:0})"
-	#
-	#   PARAMETERS:  none
-	#      RETURNS:  0, oke
-	#                1, not oke
-	#===============================================================================
-	remark() {
-	  if /usr/bin/tty >/dev/null 2>&1
-	  then
-	    logger -is -t $APPNAME "$@"
-	  else
-	    logger -i -t $APPNAME "$@"
-	  fi
-	  return 0
-	} # end: remark
-
-snippet die
-	#===  FUNCTION  ================================================================
-	#         NAME:  die
-	#  DESCRIPTION:  shell version of the perl die
-	#   PARAMETERS:  none
-	#      RETURNS:  0, oke
-	#                1, not oke
-	#===============================================================================
-	die() {
-	  remark "DIED: $@"
-	  exit 8
-	} # end: die
-
+	#------------------------------------------------------------------------------#
+	#                                    Main                                      #
+	#------------------------------------------------------------------------------#
+	$1
+	#------------------------------------------------------------------------------#
+	#                                  The End                                     #
+	#------------------------------------------------------------------------------#
 snippet mkst
-	#===  FUNCTION  ================================================================
+	function mkstaging_area()
+	# ------------------------------------------------------------------------------
 	#         NAME:  mkstaging_area
 	#  DESCRIPTION:  Creates a temporary staging area and set the variable
 	#                $STAGING_AREA to point to it
 	#   PARAMETERS:  STRING, mktemp template (optional)
 	#      RETURNS:  0, oke
 	#                1, not oke
-	#===============================================================================
-	mkstaging_area()
+	# ------------------------------------------------------------------------------
 	{
-	  local TEMPLATE RETV
-	  TEMPLATE="${HOME}/tmp/stage.XXXXXXXX"
+	  local RETV="0"
+	  local TEMPLATE="${HOME}/tmp/stage.XXXXXXXX"
+	  local TEMPLATE_STR=$1; shift
 	
-	  [[ -z "$${0:1}" ]] || TEMPLATE="$${0:1}"
+	  [[ -n "${TEMPLATE_STR}" ]] && TEMPLATE="${TEMPLATE_STR}"
 	
 	  STAGING_AREA=$(mktemp -d ${TEMPLATE})
 	  RETV=$?

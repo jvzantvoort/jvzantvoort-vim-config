@@ -47,6 +47,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 
 Plugin 'nvie/vim-flake8'
+
+Plugin 'chase/vim-ansible-yaml'
+
 " ------------------------------------------------------------------------------
 " Some platform/environment specific plugins
 " ------------------------------------------------------------------------------
