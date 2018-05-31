@@ -15,9 +15,9 @@ setlocal shiftwidth=4
 setlocal autoindent
 setlocal expandtab
 setlocal smarttab
-setlocal sts=4
-setlocal sw=4
-setlocal ts=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal tabstop=4
 
 " keybindings for perl
 "--------------------------------------------------------------------------

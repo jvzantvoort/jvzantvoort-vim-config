@@ -16,14 +16,13 @@ let python_highlight_exceptions = 1
 let python_highlight_numbers = 1
 
 " compiler pylint
-setlocal shiftwidth=4
 setlocal autoindent
 setlocal expandtab
+setlocal shiftwidth=4
 setlocal smarttab
-setlocal sts=4
-setlocal sw=4
-setlocal ts=4
-setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+setlocal softtabstop=4
+setlocal tabstop=4
+setlocal errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 
 "--------------------------------------------------------------------------
 " END
