@@ -1,35 +1,15 @@
-John van Zantvoort's vim config.
+[![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/designed-in-etch-a-sketch.svg)](https://forthebadge.com)
 
-This is my config setup which works best for me.
+This is my vim config setup which works best for me.
 
-# Installation
+Check the wiki for:
 
-To install the config simply move the old one away (just in case)
+* [Installation](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki/Installation)
+* [Generic description](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki)
+* [Plugins Used](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki/External-Plugins)
+* [Introduced keybindings](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki/Keybindings)
 
-    % cd
-    % mv .vim{,.org}
-    % mv .vimrc{,.org}
-
-Checkout the config
-
-    % git clone https://github.com/jvzantvoort/jvzantvoort-vim-config.git .vim
-
-Hard link the vimrc
-
-    % ln .vim/main.vim .vimrc
-
-## Install plugins
-
-Use Vundle to download the plugins:
-
-    % mkdir -p ~/.vim/bundle
-    % cd ~/.vim/bundle
-    % git clone https://github.com/VundleVim/Vundle.vim.git
-    % vim +PluginInstall +qall
-
-For the lazy:
-
-    % cd ~/.vim
-    % ./bootstrap.sh
 
 [github page](http://jvzantvoort.github.io/jvzantvoort-vim-config/)

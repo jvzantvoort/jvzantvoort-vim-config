@@ -8,50 +8,13 @@ some of the solutions are fairly conservative.
 great on MacVim but like confusing modem noise on another terminal
 solution.
 
-## Plugins
-
-| Plugin                                                                              | Description                                                                      |
-|:------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
-| [VundleVim/Vundle.vim](https://github.com/VundleVim/Vundle.vim.git)                 | Vundle, the plug-in manager for Vim                                              |
-| [MarcWeber/vim-addon-mw-utils](https://github.com/MarcWeber/vim-addon-mw-utils.git) | vim: interpret a file by function and cache file automatically                   |
-| [tomtom/tlib_vim](https://github.com/tomtom/tlib_vim.git)                           | Some utility functions for VIM                                                   |
-| [garbas/vim-snipmate](https://github.com/garbas/vim-snipmate.git)                   | A concise vim script that implements some of TextMates snippets features in Vim. |
-| [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree.git)                   | A tree explorer plugin for vim.                                                  |
-| [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)                         | fugitive.vim: a Git wrapper so awesome, it should be illegal                     |
-| [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)                                 | Fuzzy file, buffer, mru, tag, etc finder.                                        |
-
-### On 256 color terminals
-
-| Plugin                                                                              | Description                                                                      |
-|:------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
-| [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)               | lean & mean status/tabline for vim thats light as air                            |
-| [vim-airline/vim-airline-themes](https://github.com/vim-airline/vim-airline-themes) | This is the official theme repository for vim-airline                            |
-
-## colors
-
-### on-board
-
-* blackboard
-* borland
-* vividchalk
-* diff
-
-### Through plugins
-
-* [solarized](https://github.com/altercation/vim-colors-solarized)
-* [molokai](https://github.com/tomasr/molokai)
-
-## Keybinding
-
-| Key          | action                     |
-|--------------|----------------------------|
-| `<C-J>`      | move down in split screens |
-| `<C-K>`      | move up in split screens   |
-| `<leader>et` | Edit in a new tab          |
-| `<leader>n`  | Next tab                   |
-| `<leader>p`  | Previouse tab              |
-| `<leader>t`  | Take a note                |
-| `<leader>o`  | Toggle NERDTree            |
+The main configuration:
+* attempts to read and then loads the [`~/.vim/plugins.vim`](https://github.com/jvzantvoort/jvzantvoort-vim-config/blob/master/plugins.vim) file.
+* attempts to read and then loads the [`~/.vim/local.vim`](https://github.com/jvzantvoort/jvzantvoort-vim-config/blob/master/local.vim.example) file.
+* sets a list of (to my mind) reasonable defaults.
+* Plugins are listed [here](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki/External-Plugins).
+* http://jvzantvoort.github.io/jvzantvoort-vim-config/externalplugins.html
+* The rest of the configuration is described [here](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki/Layout).
 
 # Installation
 
