@@ -75,7 +75,7 @@ Some tweaks on vim's gui. Mainly the annoying local languages crap.
 
 ### `keybindings.vim`
 
-[Local keybindings](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki/Keybindings)
+[Local keybindings](http://jvzantvoort.github.io/jvzantvoort-vim-config/keybindings.html)
 
 ### `statusline.vim`
 
@@ -84,7 +84,7 @@ particular setup is/was a pain.
 
 ## `snippets`
 
-[Overview of the snippets](https://github.com/jvzantvoort/jvzantvoort-vim-config/wiki/Snippets)
+[Overview of the snippets](http://jvzantvoort.github.io/jvzantvoort-vim-config/snippets.html)
 
 ## `syntax`
 
