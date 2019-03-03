@@ -23,6 +23,10 @@ if (has('win32') || has('win64'))
 endif
 call vundle#begin()
 
+if !exists('g:airline')
+  let g:airline = 0
+endif
+
 Plugin 'VundleVim/Vundle.vim.git'
 
 " vim: interpret a file by function and cache file automatically
@@ -66,7 +70,7 @@ endif
 
 " On gui without Linux its worth messing around with airline
 " otherwise it just messes up the display.
-if has("gui_running") && !(s:uname == "Linux")
+if g:airline
     set laststatus=2
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
