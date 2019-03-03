@@ -23,8 +23,8 @@ if (has('win32') || has('win64'))
 endif
 call vundle#begin()
 
-if !exists('g:airline')
-  let g:airline = 0
+if !exists('g:enable_airline')
+  let g:enable_airline=0
 endif
 
 Plugin 'VundleVim/Vundle.vim.git'
@@ -70,7 +70,8 @@ endif
 
 " On gui without Linux its worth messing around with airline
 " otherwise it just messes up the display.
-if g:airline
+if g:enable_airline == "1"
+
     set laststatus=2
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
