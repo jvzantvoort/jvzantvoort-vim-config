@@ -2,22 +2,22 @@ snippet header
 	#!/bin/bash
 	# ---------------------------------------------------------------------------- #
 	#
-	#         FILE:  ${1:scriptname}
+	#         FILE:  `Filename()`
 	#
 	#        USAGE:  
 	#
-	#  DESCRIPTION:  ${2:description}
+	#  DESCRIPTION:  ${1:description}
 	#
 	#      OPTIONS:  ---
 	# REQUIREMENTS:  ---
 	#         BUGS:  ---
 	#        NOTES:  ---
-	#       AUTHOR:  John van Zantvoort (jvzantvoort), <john@vanzantvoort.org>
+	#       AUTHOR:  `g:author`, <`g:mailaddress`>
 	#      CREATED:
 	#     REVISION:
 	# ---------------------------------------------------------------------------- #
 	
-	declare -r CONST_SCRIPTPATH="$(readlink -f $0)"
+	declare -r CONST_SCRIPTPATH="$(readlink -f \$0)"
 	declare -r CONST_SCRIPTNAME="$(basename $CONST_SCRIPTPATH .sh)"
 	declare -r CONST_SCRIPTDIR="$(dirname $CONST_SCRIPTPATH)"
 	declare -r CONST_FACILITY="local0"

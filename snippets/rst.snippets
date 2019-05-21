@@ -1,6 +1,13 @@
 snippet note
 	.. note:: ${1:note}
 
+snippet header
+	:filename:    `Filename()`
+	:author:      `g:author`
+	:date:        `strftime("%Y-%m-%d")`
+	:tags:        ${1:tags}
+	:description: ${2:description}
+
 snippet comment
 	.. ${1:comment}
 
