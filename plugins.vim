@@ -27,6 +27,16 @@ if !exists('g:enable_airline')
   let g:enable_airline=0
 endif
 
+if version >= 800
+
+  " Add language-server-protocol
+  Plugin 'prabirshrestha/asyncomplete.vim'
+  Plugin 'prabirshrestha/async.vim'
+  Plugin 'prabirshrestha/vim-lsp'
+  Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+
+endif
+
 Plugin 'VundleVim/Vundle.vim.git'
 
 " vim: interpret a file by function and cache file automatically
