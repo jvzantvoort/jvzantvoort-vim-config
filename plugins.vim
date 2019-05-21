@@ -64,6 +64,8 @@ Plugin 'nvie/vim-flake8'
 
 Plugin 'chase/vim-ansible-yaml'
 
+Plugin 'fatih/vim-go'
+
 " ------------------------------------------------------------------------------
 " Some platform/environment specific plugins
 " ------------------------------------------------------------------------------
