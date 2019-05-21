@@ -13,18 +13,17 @@ let s:localCFG = expand('~/.vim/local.vim')
 let g:currentTime = strftime('%d-%b-%Y')
 let g:currentYear = strftime('%Y')
 
-" local override {{{
-if filereadable(s:localCFG)
-    exe "source " . s:localCFG
-endif
-" }}}
-
 " plugins {{{
 if filereadable(s:pluginCFG)
     exe "source " . s:pluginCFG
 endif
 " }}}
 
+" local override {{{
+if filereadable(s:localCFG)
+    exe "source " . s:localCFG
+endif
+" }}}
 
 " General settings {{{
 "-------------------------------------------------------------------------------
