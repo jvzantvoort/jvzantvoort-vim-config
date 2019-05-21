@@ -1,8 +1,8 @@
 "--------------------------------------------------------------------------
 "
-"         FILE:  .vim/ftplugin/asciidoc.vim
+"         FILE:  .vim/ftplugin/markdown.vim
 "
-"  DESCRIPTION:  Some helpfull settings when writing asciidoc
+"  DESCRIPTION:  Some helpfull settings when writing markdown
 "
 "      CREATED:  Mon, 30 Dec 2013
 "
