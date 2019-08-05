@@ -1,0 +1,386 @@
+#!/bin/bash
+#===============================================================================
+#
+#         FILE:  build_home_setup
+#
+#        USAGE:  build_home_setup
+#
+#  DESCRIPTION:  $description
+#
+#      OPTIONS:  ---
+# REQUIREMENTS:  ---
+#         BUGS:  ---
+#        NOTES:  ---
+#       AUTHOR:  John van Zantvoort (jvzantvoort), $mailaddress
+#      COMPANY:  $company
+#      CREATED:  31-Jul-2018
+#===============================================================================
+
+declare -r CONST_SCRIPTPATH="$(readlink -f $0)"
+declare -r CONST_SCRIPTNAME="$(basename $CONST_SCRIPTPATH .sh)"
+declare -r CONST_SCRIPTDIR="$(dirname $CONST_SCRIPTPATH)"
+declare -r CONST_FACILITY="local0"
+declare -r CONST_CWD="${PWD}"
+declare -r CONST_TOPDIR=$(git rev-parse --show-toplevel)
+declare -xr LANG="C"
+
+
+VIMBUNDLES=()
+
+function list_plugins()
+{
+  cat "${CONST_TOPDIR}/plugins.vim" | \
+    grep Plugin | sed 's/\"\ *Plugin.*$//' | \
+    awk '$1 ~ /Plugin/ { print $2 }' | \
+    sed "s,',,g" | sed 's,\.git$,,'
+}
+
+function logging()
+{
+  local priority="$1"; shift
+  logger -p ${CONST_FACILITY}.${priority} -i -s -t "${CONST_SCRIPTNAME}" -- "${priority} $@"
+}
+
+function logging_err()
+{
+  logging "err" "$@"
+}
+
+function logging_info()
+{
+  logging "info" "$@"
+}
+
+function script_exit()
+{
+  local STRING="$1"
+  local RETV="${2:-0}"
+  if [ "$RETV" = "0" ]
+  then
+    logging_info "$STRING"
+  else
+    logging_err "$STRING"
+  fi
+  exit $RETV
+}
+
+function pathmunge()
+{
+  [ -d "$1" ] || return
+
+  EGREP="$(which --skip-alias egrep)"
+  [[ -z "${EGREP}" ]] && script_exit "ERROR: egrep not found" 1
+
+  if echo $PATH | $EGREP -q "(^|:)$1($|:)"
+  then
+    return
+  fi
+
+  if [ "$2" = "after" ]
+  then
+      PATH=$PATH:$1
+  else
+      PATH=$1:$PATH
+  fi
+}
+
+function current_config()
+{
+  
+  printf "GROUPID=\"%s\"\n" $(id -g)
+  printf "GROUPNAME=\"%s\"\n" $(id -gn)
+  printf "USERID=\"%s\"\n" $(id -u)
+  printf "USERNAME=\"%s\"\n" $(id -un)
+  printf "USERGCOS=\"%s\"\n" "$(getent passwd $(id -un)|cut -d\: -f5)"
+  printf "USERHOMEDIR=\"%s\"\n" "$(getent passwd $(id -un)|cut -d\: -f6)"
+  printf "USERSHELL=\"%s\"\n" "$(getent passwd $(id -un)|cut -d\: -f7)"
+}
+
+function mkstaging_area()
+# ------------------------------------------------------------------------------
+#         NAME:  mkstaging_area
+#  DESCRIPTION:  Creates a temporary staging area and set the variable
+#                $STAGING_AREA to point to it
+#   PARAMETERS:  STRING, mktemp template (optional)
+#      RETURNS:  0, oke
+#                1, not oke
+# ------------------------------------------------------------------------------
+{
+  local RETV="0"
+  local TEMPLATE="${HOME}/tmp/stage.XXXXXXXX"
+  local TEMPLATE_STR=; shift
+
+  [[ -n "${TEMPLATE_STR}" ]] && TEMPLATE="${TEMPLATE_STR}"
+
+  STAGING_AREA=$(mktemp -d ${TEMPLATE})
+  RETV=$?
+
+  if [ $RETV == 0 ]
+  then
+    return 0
+  else
+    remark "mkstaging_area failed $RETV"
+    return 1
+  fi
+
+  return 0
+} # end: mkstaging_area
+
+function gitexport()
+{
+  local sourceurl=""
+  local destdir=""
+  local basedir=""
+  local prefix=""
+  local varname=""
+  local vartype=""
+  local basename=""
+  local tag=""
+  local args=()
+
+  #
+  # --------------------------------------
+  for ind in "$@"
+  do
+    case $ind in
+    -h)        echo "$gitexport [--url <>] [--destdir <>] [--tag <>]";
+               return;;
+    --url)     sourceurl="$2"; shift;;
+    --destdir) destdir="$2"; shift;;
+    --basedir) basedir="$2"; shift;;
+    --prefix)  prefix="$2"; shift;;
+    --varname) varname="$2"; shift;;
+    --vartype) vartype="$2"; shift;;
+    --tag)     tag="$2"; shift;;
+    -*)        echo "unknown option: $1" >&2; return 1;;
+    *)         args[${#args[@]}]="$1"; shift;;
+    esac
+  done
+
+  [[ -z "$sourceurl" ]] && return 2
+  [[ -z "$destdir"   ]] && return 3
+  [[ -z "$basedir"   ]] && basedir="$PWD"
+  basename=$(basename $sourceurl .git)
+  if [ -z "$varname" ]
+  then
+    varname=$(echo "${basename}"|tr A-Z a-z|tr -d '-'|tr '\.' '_')
+  fi
+  # --------------------------------------
+  #
+
+  # checkout archive
+  # --------------------------------------
+  pushd "${basedir}" >/dev/null 2>&1
+
+  git clone --quiet "$sourceurl"
+  pushd $basename >/dev/null 2>&1 || return 4
+  # --------------------------------------
+  #
+
+  # get a tag
+  # --------------------------------------
+  if [ -z "$tag" ]
+  then
+    tag=$(git describe --abbrev=0 --tags)
+
+  elif [ "$tag" = "HEAD" ]
+  then
+    longhash=`git rev-parse HEAD`
+    shorthash=`git log --pretty=format:'%h' -n 1`
+
+  else
+    longhash=$tag
+    shorthash=$tag
+
+  fi
+  # --------------------------------------
+  #
+
+  if [ -z "$prefix" ]
+  then
+    prefix="${basename}-${shorthash}"
+  fi
+
+  echo "${varname}=\"${prefix}.tar.gz\"" >> ${basedir}/${vartype}.sh
+
+  outputfile="$destdir/${prefix}.tar"
+
+  git archive \
+    --format=tar \
+    --prefix="${prefix}/" \
+    --output="${outputfile}" \
+    $longhash >/dev/null 2>&1
+
+  popd >/dev/null 2>1
+
+  rm -rf $basename
+
+  [[ -f "${outputfile}.gz" ]] && rm -f "${outputfile}.gz"
+
+  gzip -9 "${outputfile}"
+
+  popd >/dev/null 2>1
+}
+
+function install_main()
+{
+  local BASEDIR=$1; shift
+
+  cat > "${BASEDIR}/main.sh" << 'END'
+#!/bin/bash
+
+set -xv
+
+CURDIR=`pwd`
+TEMPLATE="${HOME}/.installhome.XXXXXXXX"
+STAGING_AREA=$(mktemp -d ${TEMPLATE})
+[[ -z "$STAGING_AREA" ]] && exit 1
+
+END
+
+  printf "GROUPID=\"%s\"\n"     "${GROUPID}"     >> "${BASEDIR}/main.sh"
+  printf "GROUPNAME=\"%s\"\n"   "${GROUPNAME}"   >> "${BASEDIR}/main.sh"
+  printf "USERID=\"%s\"\n"      "${USERID}"      >> "${BASEDIR}/main.sh"
+  printf "USERNAME=\"%s\"\n"    "${USERNAME}"    >> "${BASEDIR}/main.sh"
+  printf "USERGCOS=\"%s\"\n"    "${USERGCOS}"    >> "${BASEDIR}/main.sh"
+  printf "USERHOMEDIR=\"%s\"\n" "${USERHOMEDIR}" >> "${BASEDIR}/main.sh"
+  printf "USERSHELL=\"%s\"\n"   "${USERSHELL}"   >> "${BASEDIR}/main.sh"
+
+  if [ -f "${STAGING_AREA}/packages.sh" ]
+  then
+    cat "${STAGING_AREA}/packages.sh" >> "${BASEDIR}/main.sh"
+  fi
+
+echo "VIMBUNDLES=(" >> "${BASEDIR}/main.sh"
+  if [ -f "${STAGING_AREA}/vimbundles.sh" ]
+  then
+    cat "${STAGING_AREA}/vimbundles.sh" | while read line
+    do
+      echo "$line" | cut -d'=' -f 2 >> "${BASEDIR}/main.sh"
+    done
+  fi
+
+  cat >> "${BASEDIR}/main.sh" << 'END'
+           )
+mkdir -p "${STAGING_AREA}/.tools"
+mkdir -p "${STAGING_AREA}/.bash"
+mkdir -p "${STAGING_AREA}/.vim/bundle"
+
+tar -zx -C "${STAGING_AREA}/.tools" --strip-components 1  -f packages/$tooling
+tar -zx -C "${STAGING_AREA}/.bash" --strip-components 1  -f packages/$jvzantvoortbashconfig
+tar -zx -C "${STAGING_AREA}/.vim" --strip-components 1  -f packages/$jvzantvoortvimconfig
+
+pushd "${STAGING_AREA}/.vim/bundle"
+for ind in "${VIMBUNDLES[@]}"
+do
+  tar -xf "${CURDIR}/vimbundles/${ind}"
+done
+popd
+
+case $1 in
+  install)
+    echo "rsync -av \"${STAGING_AREA}/.tools/\" \"${HOME}/.tools/\""
+    echo "rsync -av \"${STAGING_AREA}/.bash/\" \"${HOME}/.bash/\""
+    echo "rsync -av \"${STAGING_AREA}/.vim/\" \"${HOME}/.vim/\""
+    ;;
+  list)
+    find "${STAGING_AREA}" -type f
+
+    ;;
+esac
+END
+  chmod 755 "${BASEDIR}/main.sh"
+
+}
+
+
+#------------------------------------------------------------------------------#
+#                                    Main                                      #
+#------------------------------------------------------------------------------#
+# makeself packages packages.bin packages ./main.sh
+#------------------------------------------------------------------------------#
+
+
+
+
+logging_info "start"
+
+list_plugins | while read plugin
+do
+  URL=$(printf "https://github.com/%s.git\n" $plugin)
+  VIMBUNDLES+=("${URL}")
+done
+
+# setup path
+#---------------------------------------
+pathmunge "${HOME}/bin" "after"
+export PATH
+
+if which makeself >/dev/null 2>&1
+then
+  MAKESELF="$(which makeself)"
+else
+  script_exit "don't have makeself" 1
+fi
+
+G_CONFIGFILE=$1; shift
+
+[[ -z "${G_CONFIGFILE}" ]] && G_CONFIGFILE="${HOME}/.${CONST_SCRIPTNAME}"
+
+[[ -f "${G_CONFIGFILE}" ]] || current_config > ${G_CONFIGFILE}
+
+source "${G_CONFIGFILE}"
+
+mkstaging_area
+
+mkdir -p "${STAGING_AREA}/homesetup/packages"
+mkdir -p "${STAGING_AREA}/homesetup/vimbundles"
+
+pushd "${STAGING_AREA}" >/dev/null 2>&1
+
+gitexport --url "https://github.com/jvzantvoort/jvzantvoort-bash-config.git" \
+          --destdir "${STAGING_AREA}/homesetup/packages" \
+          --basedir "${STAGING_AREA}" \
+          --varname "jvzantvoortbashconfig" \
+          --vartype "packages" \
+          --tag "HEAD" 
+
+gitexport --url "https://github.com/jvzantvoort/jvzantvoort-vim-config.git" \
+          --destdir "${STAGING_AREA}/homesetup/packages" \
+          --basedir "${STAGING_AREA}" \
+          --varname "jvzantvoortvimconfig" \
+          --vartype "packages" \
+          --tag "HEAD" 
+
+gitexport --url "https://github.com/jvzantvoort/homebin.git" \
+          --destdir "${STAGING_AREA}/homesetup/packages" \
+          --basedir "${STAGING_AREA}" \
+          --varname "tooling" \
+          --vartype "packages" \
+          --tag "HEAD" 
+
+popd >/dev/null 2>1
+
+for ind in "${VIMBUNDLES[@]}"
+do
+  gitexport --url "${ind}" \
+            --destdir "${STAGING_AREA}/homesetup/vimbundles" \
+            --basedir "${STAGING_AREA}" \
+            --vartype "vimbundles" \
+            --tag "HEAD" 
+done
+
+install_main "${STAGING_AREA}/homesetup"
+
+
+
+
+echo "${STAGING_AREA}"
+pushd "${STAGING_AREA}" >/dev/null 2>&1
+$MAKESELF homesetup "${CONST_CWD}/homesetup.bin" homesetup ./main.sh
+popd >/dev/null 2>1
+
+script_exit "end"
+#------------------------------------------------------------------------------#
+#                                  The End                                     #
+#------------------------------------------------------------------------------#
