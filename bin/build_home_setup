@@ -25,7 +25,7 @@ declare -r CONST_TOPDIR=$(git rev-parse --show-toplevel)
 declare -xr LANG="C"
 
 
-VIMBUNDLES=()
+declare -a VIMBUNDLES
 
 function list_plugins()
 {
@@ -33,6 +33,11 @@ function list_plugins()
     grep Plugin | sed 's/\"\ *Plugin.*$//' | \
     awk '$1 ~ /Plugin/ { print $2 }' | \
     sed "s,',,g" | sed 's,\.git$,,'
+}
+
+function list_plugins_urls()
+{
+  list_plugins | sed 's#^#https://github.com/#;s/$/.git/'
 }
 
 function logging()
@@ -172,6 +177,7 @@ function gitexport()
   # --------------------------------------
   pushd "${basedir}" >/dev/null 2>&1
 
+  logging_info "clone: $sourceurl"
   git clone --quiet "$sourceurl"
   pushd $basename >/dev/null 2>&1 || return 4
   # --------------------------------------
@@ -305,12 +311,15 @@ END
 
 logging_info "start"
 
-list_plugins | while read plugin
-do
-  URL=$(printf "https://github.com/%s.git\n" $plugin)
-  VIMBUNDLES+=("${URL}")
-done
+VIMBUNDLES=($(list_plugins_urls))
+# while read plugin
+# do
+#   URL=$(printf "https://github.com/%s.git\n" $plugin)
+#   logging_info "url $URL"
+#   VIMBUNDLES[${#VIMBUNDLES[@]}]=$URL
+# done <<< `list_plugins`
 
+printf ">> %d\n" ${#VIMBUNDLES[@]}
 # setup path
 #---------------------------------------
 pathmunge "${HOME}/bin" "after"
