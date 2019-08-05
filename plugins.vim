@@ -45,6 +45,8 @@ Plugin 'MarcWeber/vim-addon-mw-utils.git'
 " Some utility functions for VIM
 Plugin 'tomtom/tlib_vim.git'
 
+Plugin 'seeamkhan/robotframework-vim'
+
 " snipMate.vim aims to be a concise vim script that implements some of
 " TextMate's snippets features in Vim.
 Plugin 'garbas/vim-snipmate.git'
@@ -58,13 +60,13 @@ Plugin 'tomasr/molokai'
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
 
 Plugin 'nvie/vim-flake8'
 
 Plugin 'chase/vim-ansible-yaml'
 
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 
 " ------------------------------------------------------------------------------
 " Some platform/environment specific plugins
