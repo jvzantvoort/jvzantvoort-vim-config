@@ -61,12 +61,15 @@ Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-fugitive'
 
 " Plugin 'kien/ctrlp.vim'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
 Plugin 'nvie/vim-flake8'
 
 Plugin 'chase/vim-ansible-yaml'
 
-" Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " ------------------------------------------------------------------------------
 " Some platform/environment specific plugins
