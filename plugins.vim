@@ -67,7 +67,7 @@ Plugin 'nvie/vim-flake8'
 
 Plugin 'chase/vim-ansible-yaml'
 
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
