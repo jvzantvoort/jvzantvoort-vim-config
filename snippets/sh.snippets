@@ -8,19 +8,14 @@ snippet header
 	#
 	#  DESCRIPTION:  ${1:description}
 	#
-	#      OPTIONS:  ---
-	# REQUIREMENTS:  ---
-	#         BUGS:  ---
-	#        NOTES:  ---
 	#       AUTHOR:  `g:author`, <`g:mailaddress`>
-	#      CREATED:
-	#     REVISION:
+	#
 	# ---------------------------------------------------------------------------- #
 	
-	declare -r CONST_SCRIPTPATH="$(readlink -f \$0)"
-	declare -r CONST_SCRIPTNAME="$(basename $CONST_SCRIPTPATH .sh)"
-	declare -r CONST_SCRIPTDIR="$(dirname $CONST_SCRIPTPATH)"
-	declare -r CONST_FACILITY="local0"
+	readonly CONST_SCRIPTPATH=$(readlink -f "\$0)"
+	readonly CONST_SCRIPTNAME=$(basename "$CONST_SCRIPTPATH" .sh)
+	readonly CONST_SCRIPTDIR=$(dirname "$CONST_SCRIPTPATH")
+	readonly CONST_FACILITY="local0"
 	declare -xr LANG="C"
 	
 snippet main
@@ -41,23 +36,17 @@ snippet mkst
 	#      RETURNS:  0, oke
 	#                1, not oke
 	# ------------------------------------------------------------------------------
+	function mkstaging_area()
 	{
-	  local RETV="0"
-	  local TEMPLATE="${HOME}/tmp/stage.XXXXXXXX"
-	  local TEMPLATE_STR=$1; shift
+	  local template
+	  local retv
 	
-	  [[ -n "${TEMPLATE_STR}" ]] && TEMPLATE="${TEMPLATE_STR}"
+	  template="/tmp/stage.XXXXXXXX"
+	  retv="0"
 	
-	  STAGING_AREA=$(mktemp -d ${TEMPLATE})
-	  RETV=$?
+	  STAGING_AREA=$(mktemp -d ${template})
+	  retv=$?
 	
-	  if [ $RETV == 0 ]
-	  then
-	    return 0
-	  else
-	    remark "mkstaging_area failed $RETV"
-	    return 1
-	  fi
+	  [[ $retv == 0 ]] || script_exit "mkstaging_area failed $retv" "${retv}"
 	
-	  return 0
 	} # end: mkstaging_area
