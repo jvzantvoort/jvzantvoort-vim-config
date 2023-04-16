@@ -1,13 +1,3 @@
-"--------------------------------------------------------------------------
-"
-"         FILE:  .vim/ftplugin/python.vim
-"
-"  DESCRIPTION:  Settings for editing python scripts
-"
-"      CREATED:  Mon, 30 Dec 2013
-"
-"--------------------------------------------------------------------------
-
 if exists("b:did_ftplugin") | finish | endif
 let b:did_ftplugin = 1
 
@@ -15,7 +5,6 @@ let python_highlight_builtins = 1
 let python_highlight_exceptions = 1
 let python_highlight_numbers = 1
 
-" compiler pylint
 setlocal autoindent
 setlocal expandtab
 setlocal shiftwidth=4
@@ -34,7 +23,3 @@ if version >= 800
           \ })
   endif
 endif
-
-"--------------------------------------------------------------------------
-" END
-"--------------------------------------------------------------------------

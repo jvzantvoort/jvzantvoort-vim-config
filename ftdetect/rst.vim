@@ -1,5 +1,5 @@
-if did_filetype() " filetype already set..
-  finish          " ..don't do these checks
+if did_filetype()
+  finish
 endif
 
 autocmd BufRead,BufNewFile *.irst set filetype=rst

@@ -84,7 +84,6 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'jhradilek/vim-docbk'
 
 Plugin 'martinda/Jenkinsfile-vim-syntax'
-Plugin 'vimwiki/vimwiki'
 
 " ------------------------------------------------------------------------------
 " Some platform/environment specific plugins
