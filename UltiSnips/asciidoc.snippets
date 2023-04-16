@@ -1,6 +1,6 @@
 priority 10
 
-snippet header b
+snippet header "File header"  b
 :Author:      ${1:`!v g:snips_author`}
 :Date:        ${2:`!v strftime("%Y-%m-%d")`}
 :keywords:    ${3:keywords}
@@ -12,7 +12,7 @@ $0
 
 endsnippet
 
-snippet userstory b
+snippet userstory "User story" b
 == Story: ${1:shortname}
 
 _Story narrative_
@@ -28,7 +28,7 @@ _Acceptance Criteria_
 * Then ${7:outcome}
 endsnippet
 
-snippet image !b
+snippet image "Image" !b
 image::${1:imagepath}[${2:alt text}]
 endsnippet
 

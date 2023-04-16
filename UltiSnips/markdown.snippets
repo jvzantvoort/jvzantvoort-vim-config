@@ -1,21 +1,26 @@
 
-snippet note
-	!!! note
-	
-	    ${1:note}
+snippet note "mkdocs note makro" b
+!!! note
 
-snippet warning
-	!!! warning
-	
-	    ${1:warning}
+    ${1:note}
+endsnippet
 
-snippet tip
-	!!! tip
-	
-	    ${1:tip}
+snippet warning "mkdocs warning makro" b
+!!! warning
 
-snippet tags
-	---
-	tags:
-	  - ${1:tag}
-	---
+    ${1:warning}
+endsnippet
+
+snippet tip "mkdocs tip makro" b
+!!! tip
+
+    ${1:tip}
+endsnippet
+
+snippet tags "mkdocs tags header" b
+---
+tags:
+  - ${1:tag}
+---
+endsnippet
+

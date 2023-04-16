@@ -1,37 +1,38 @@
-snippet note
+snippet note "rst note makro" b
 .. note:: ${1:note}
 endsnippet
 
-snippet header
-:filename:    `Filename()`
-:author:      `g:author`
-:date:        `strftime("%Y-%m-%d")`
+snippet header "File Header" b
+:filename:    ${1:`!v vim_snippets#Filename('$1', 'name')`}
+:author:      ${2:`!v g:snips_author`}
+:date:        `!v strftime("%Y-%m-%d")`
 :tags:        ${1:tags}
 :description: ${2:description}
 endsnippet
 
-snippet comment
+snippet comment "Comment" b
 .. ${1:comment}
 endsnippet
 
-snippet codeblock
+snippet codeblock "code block" b
 .. code-block:: ${1:python}
 
-  def foo()
+  ${2}
 
+$0
 endsnippet
 
-snippet ref
+snippet ref "Reference name" b
 .. _${1:refname}:
 endsnippet
 
-snippet literalinclude
+snippet literalinclude "Literal include" b
 .. literalinclude:: ${1:filename}
    :language: ${2:bash}
    :caption: ${2:caption}
 endsnippet
 
-snippet image
+snippet image "Add image" b
 .. image:: ${1:imagename.jpg}
    :height: 200px
    :width: 200px
@@ -39,11 +40,11 @@ snippet image
    :align: right
 endsnippet
 
-snippet term
+snippet term "Term" b
 :term:\`${2:title}<${1:term}>\`
 endsnippet
 
-snippet table
+snippet table "Table" b
 .. list-table:: Frozen Delights!
    :widths: 15 10 30
    :header-rows: 1
