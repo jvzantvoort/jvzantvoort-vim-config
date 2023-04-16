@@ -8,6 +8,8 @@ set path+=**
 " Display all the files when matching
 set wildmenu
 
+set wildignore+=*.pyc,*.pyo,*.so,*.swp,*.zip
+
 " - check |netrw-browse-maps| for more mappings
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in prior window
@@ -55,8 +57,16 @@ set nocompatible
 " disable beep and flash
 set vb t_vb=
 
+" Fix delete keys
+set t_kb=
+fixdel
+
 " I don't like search highlighting
 set nohlsearch
 
 syntax on
+
+
+let g:terraform_fmt_on_save=1
+
 " }}}

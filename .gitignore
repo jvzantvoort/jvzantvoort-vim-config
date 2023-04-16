@@ -2,3 +2,4 @@ autoload
 bundle
 plugin/000local.vim
 local.vim
+.netrwhist

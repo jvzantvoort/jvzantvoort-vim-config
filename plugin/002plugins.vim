@@ -1,131 +1,51 @@
-"--------------------------------------------------------------------------
-"
-"         FILE:  .vim/plugins.vim
-"
-"  DESCRIPTION:  Plugins used in this tragedy
-"
-"      CREATED:  Fri, 11 Aug 2017
-"
-"--------------------------------------------------------------------------
-
-" test if we have vundle
-" --------------------------------------
-let s:vundledir = expand('~/.vim/bundle/Vundle.vim')
 let s:plugsindir = expand('~/.vim/plugins/')
-if !isdirectory(s:vundledir)
-  finish
-endif
 
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
 if (has('win32') || has('win64'))
   set rtp+=$HOME/.vim
 endif
-call vundle#begin()
 
-if !exists('g:enable_airline')
-  let g:enable_airline=0
-endif
+call plug#begin('~/.vim/bundle')
 
-function! LoadConfigFile(configfile)
-  exe "source " . s:plugsindir .  a:configfile
-endfunction
+" Colors
+" --------------------------------------
+" A tree explorer plugin for vim.
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
 
-if version >= 800
+" Languages
+" --------------------------------------
+Plug 'seeamkhan/robotframework-vim'
 
-  " Add language-server-protocol
-  Plugin 'prabirshrestha/asyncomplete.vim'
-  Plugin 'prabirshrestha/async.vim'
-  Plugin 'prabirshrestha/vim-lsp'
-  Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'pearofducks/ansible-vim'
+Plug 'Glench/Vim-Jinja2-Syntax', { 'branch': 'master' }
 
-endif
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 
-Plugin 'VundleVim/Vundle.vim.git'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
-" vim: interpret a file by function and cache file automatically
-Plugin 'MarcWeber/vim-addon-mw-utils.git'
+Plug 'hashivim/vim-terraform'
 
-" Some utility functions for VIM
-Plugin 'tomtom/tlib_vim.git'
+Plug 'nvie/vim-flake8'
 
-Plugin 'seeamkhan/robotframework-vim'
+Plug 'jhradilek/vim-docbk'
 
+Plug 'martinda/Jenkinsfile-vim-syntax'
+
+" Snippets
+" --------------------------------------
 " snipMate.vim aims to be a concise vim script that implements some of
 " TextMate's snippets features in Vim.
-"Plugin 'garbas/vim-snipmate.git'
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
 
-" A tree explorer plugin for vim.
-Plugin 'scrooloose/nerdtree.git'
+" Navigation
+" --------------------------------------
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
+call plug#end()
 
-" Plugin 'kien/ctrlp.vim'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-
-Plugin 'nvie/vim-flake8'
-
-Plugin 'chase/vim-ansible-yaml'
-
-Plugin 'cespare/vim-toml'
-
-Plugin 'fatih/vim-go'
-
-Plugin 'hashivim/vim-terraform'
-
-" Syntax highlighting and icons for nerdtree
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'ryanoasis/vim-devicons'
-
-Plugin 'jhradilek/vim-docbk'
-
-Plugin 'martinda/Jenkinsfile-vim-syntax'
-
-" ------------------------------------------------------------------------------
-" Some platform/environment specific plugins
-" ------------------------------------------------------------------------------
-" set a default
-let s:uname = "default"
-
-if has("win32") || has("win64")
-  let s:uname = "windows"
-else
-  if has("unix")
-    let s:uname = substitute(system('uname -s'), "\n", "", "")
-  endif
-endif
-
-" On gui without Linux its worth messing around with airline
-" otherwise it just messes up the display.
-if g:enable_airline == "1"
-
-    set laststatus=2
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    if !exists("g:airline_symbols")
-      let g:airline_symbols = {}
-    endif
-    let g:airline_theme="luna"
-    let g:airline_powerline_fonts=1
-    let g:syntastic_error_symbol = '?'
-    " let g:airline_symbols.space = "\ua0"
-    let g:airline#extensions#branch#empty_message  =  "no .git"
-    let g:airline#extensions#whitespace#enabled    =  0
-    let g:airline#extensions#syntastic#enabled     =  1
-    let g:airline#extensions#tabline#enabled       =  1
-    let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
-    let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
-    let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
-    " let g:syntastic_error_symbol = '✘'
-    " let g:syntastic_warning_symbol = "▲"
-    let g:airline_powerline_fonts = 1
-endif
-
-call vundle#end()
 filetype plugin indent on    " required
 
-let g:terraform_fmt_on_save=1
+set nocompatible
+filetype off

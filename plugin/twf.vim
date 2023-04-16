@@ -1,4 +1,4 @@
-" go get -u github.com/wvanlint/twf/cmd/twf
+" github.com/wvanlint/twf/cmd/twf
 function! Twf()
   let temp = tempname()
   execute 'silent ! twf ' . @% . ' > ' . temp

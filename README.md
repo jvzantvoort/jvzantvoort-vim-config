@@ -15,3 +15,12 @@ Check the wiki for:
 
 
 [github page](http://jvzantvoort.github.io/jvzantvoort-vim-config/)
+
+# Install
+
+## Install vim-plug
+
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
