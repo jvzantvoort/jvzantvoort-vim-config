@@ -2,7 +2,9 @@
 [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/designed-in-etch-a-sketch.svg)](https://forthebadge.com)
 
-This is my vim config setup which works best for me.
+This is my vim config setup which works best for me. My aim is to
+make a simple configuration that only provides what I use and is
+proven to work (at least for me).
 
 Check the wiki for:
 
