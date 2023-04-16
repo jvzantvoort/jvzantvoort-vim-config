@@ -1,0 +1,8 @@
+let g:snips_comment = "username"
+let g:snips_author = "Your name"
+let g:snips_email = "lala@example.com"
+let g:snips_github = "https://github.com/yourname"
+
+let g:copyright = ""
+let g:license = "MIT"
+let g:company = ""
