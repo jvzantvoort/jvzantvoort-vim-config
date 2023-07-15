@@ -1,6 +1,6 @@
 "  Some settings learned from Damian Conway's presentation.
 
-exec 'set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~'
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 
 highlight ColorColumn ctermbg=magenta
