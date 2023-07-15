@@ -45,7 +45,7 @@ set showcmd
 set incsearch
 
 " number:                                     show the line number for each line
-set nu
+set number
 
 " backupext:                             file name extension for the backup file
 " exec 'set bex=' . expand(strftime("_jvz:%Y%m%d_%H%M"))
@@ -53,7 +53,7 @@ set nu
 set nobackup                   " do not keep a backup file, use versions instead
 
 " disable beep and flash
-set vb t_vb=
+set visualbell t_vb=
 
 " Fix delete keys
 set t_kb=

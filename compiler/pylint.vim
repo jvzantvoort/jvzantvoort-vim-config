@@ -87,9 +87,9 @@ function! Pylint(writing)
     endif	
 
     if has('win32') || has('win16') || has('win95') || has('win64')
-        setlocal sp=>%s
+        setlocal shellpipe=>%s
     else
-        setlocal sp=>%s\ 2>&1
+        setlocal shellpipe=>%s\ 2>&1
     endif
 
     " If check is executed by buffer write - do not jump to first error

@@ -1,7 +1,7 @@
 let s:plugsindir = expand('~/.vim/plugins/')
 
 if (has('win32') || has('win64'))
-  set rtp+=$HOME/.vim
+  set runtimepath+=$HOME/.vim
 endif
 
 call plug#begin('~/.vim/bundle')
