@@ -52,8 +52,6 @@ set nu
 
 set nobackup                   " do not keep a backup file, use versions instead
 
-set nocompatible
-
 " disable beep and flash
 set vb t_vb=
 

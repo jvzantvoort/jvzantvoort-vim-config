@@ -60,7 +60,7 @@ if exists(':Pylint') != 2
     command Pylint :call Pylint(0)
 endif
 
-if exists(":CompilerSet") != 2          " older Vim always used :setlocal
+if exists(':CompilerSet') != 2          " older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
@@ -115,11 +115,11 @@ function! PylintEvaluation()
     let b:pylint_rate = '0.00'
     let b:pylint_prev_rate = '0.00'
     for l:item in l:list
-        if l:item.type == 'I' && l:item.text =~ 'Your code has been rated'
+        if l:item.type ==# 'I' && l:item.text =~# 'Your code has been rated'
             let l:re_rate = '\(-\?[0-9]\{1,2\}\.[0-9]\{2\}\)/'
             let b:pylint_rate = substitute(l:item.text, '.*rated at '.l:re_rate.'.*', '\1', 'g')
             " Only if there is information about previous run
-            if l:item.text =~ 'previous run: '
+            if l:item.text =~# 'previous run: '
                 let b:pylint_prev_rate = substitute(l:item.text, '.*previous run: '.l:re_rate.'.*', '\1', 'g')
             endif    
         endif

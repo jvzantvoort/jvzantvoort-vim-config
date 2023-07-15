@@ -31,6 +31,8 @@ Plug 'jhradilek/vim-docbk'
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
+Plug 'dense-analysis/ale'
+
 " Snippets
 " --------------------------------------
 " snipMate.vim aims to be a concise vim script that implements some of
@@ -47,5 +49,4 @@ call plug#end()
 
 filetype plugin indent on    " required
 
-set nocompatible
 filetype off

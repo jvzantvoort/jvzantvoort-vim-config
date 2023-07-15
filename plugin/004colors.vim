@@ -9,7 +9,10 @@ function CheckRo()
         colorscheme molokai
     endif
 endfunction
-au BufReadPost * call CheckRo()
+
+augroup ro
+  autocmd BufReadPost * call CheckRo()
+augroup END
 
 if &diff
   colorscheme molokai
