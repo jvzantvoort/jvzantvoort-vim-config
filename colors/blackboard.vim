@@ -8,11 +8,11 @@
 
 set background=dark
 hi clear
-if exists("syntax_on")
+if exists('syntax_on')
    syntax reset
 endif
 
-let g:colors_name = "blackboard"
+let g:colors_name = 'blackboard'
 
 " Colours in use
 " --------------
@@ -23,7 +23,7 @@ let g:colors_name = "blackboard"
 " #84A7C1 light blue
 " #AEAEAE medium grey
 
-if has("gui_running")
+if has('gui_running')
   "GUI Colors
   highlight Normal guifg=White   guibg=#0B1022
   highlight Cursor guifg=Black   guibg=Yellow

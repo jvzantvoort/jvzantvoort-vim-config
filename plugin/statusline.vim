@@ -8,4 +8,4 @@ set statusline+=%= "left/right separator
 set statusline+=%b,0x%-8B\ " current char
 set statusline+=%c,%l/ "cursor column/total lines
 set statusline+=%L\ %P "total lines/percentage in file
-set ls=2
+set laststatus=2

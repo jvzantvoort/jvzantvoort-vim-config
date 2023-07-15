@@ -4,7 +4,7 @@
 " Last Change:	2005 Mar 28
 
 " Only load this indent file when no other was loaded.
-if exists("b:did_indent")
+if exists('b:did_indent')
   finish
 endif
 let b:did_indent = 1
@@ -18,10 +18,10 @@ setlocal indentkeys& indentkeys+=0=extends indentkeys+=0=implements
 " Set the function to do the work.
 setlocal indentexpr=GetGroovyIndent()
 
-let b:undo_indent = "set cin< cino< indentkeys< indentexpr<"
+let b:undo_indent = 'set cin< cino< indentkeys< indentexpr<'
 
 " Only define the function once.
-if exists("*GetGroovyIndent")
+if exists('*GetGroovyIndent')
   finish
 endif
 
