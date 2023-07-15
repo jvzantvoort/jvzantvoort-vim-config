@@ -14,9 +14,9 @@
 "
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
-if version < 600
+if v:version < 600
     syntax clear
-elseif exists ("b:current_syntax")
+elseif exists ('b:current_syntax')
     finish
 endif
 
@@ -39,8 +39,8 @@ syn region  cf3String       start=/\z\("\|'\)/ skip=/\\\z1/ end=/\z1/ contains=c
 syn keyword cf3Type         int ilist slist float not and string expression real rlist
 syn keyword cf3OnOff        on off yes no true false  
 
-if version >= 508 || !exists("did_cfg_syn_inits")
-    if version < 508
+if v:version >= 508 || !exists('did_cfg_syn_inits')
+    if v:version < 508
         let did_cfg_syn_inits = 1
         command -nargs=+ HiLink hi link <args>
     else
@@ -60,7 +60,7 @@ if version >= 508 || !exists("did_cfg_syn_inits")
 
     delcommand HiLink
 endif
-let b:current_syntax = "cf3"
+let b:current_syntax = 'cf3'
 
 " CREDITS
 " Neil Watson <neil@watson-wilson.ca>

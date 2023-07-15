@@ -5,15 +5,15 @@
 " Version:      0.2
 " TODO:         There are some bugs, add << >>
 "
-if exists("b:current_syntax")
+if exists('b:current_syntax')
     finish
 endif
 
-if version < 600
+if v:version < 600
   syntax clear
 endif
 
-let b:current_syntax = "plantuml"
+let b:current_syntax = 'plantuml'
 
 syntax sync minlines=100
 

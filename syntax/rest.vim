@@ -21,9 +21,9 @@
 
 " Remove any old syntax stuff that was loaded (5.x) or quit when a syntax file
 " was already loaded (6.x).
-if version < 600
+if v:version < 600
   syntax clear
-elseif exists("b:current_syntax")
+elseif exists('b:current_syntax')
   finish
 endif
 
@@ -132,7 +132,7 @@ syn region rstBlock start="::\(\n\s*\)\{-}\z(\s\+\)" skip="^$" end="^\z1\@!" fol
 
 syn sync minlines=50
 
-if !exists("did_rst_syn_inits")
+if !exists('did_rst_syn_inits')
     let did_rst_syn_inits = 1
    
     hi link rstBibliographicField Operator
@@ -164,6 +164,6 @@ if !exists("did_rst_syn_inits")
     hi link rstDirective Underlined
 endif
 
-let b:current_syntax = "rst"
+let b:current_syntax = 'rst'
 
 " vim: set sts=4 sw=4:

@@ -8,7 +8,7 @@
 " Limitations:  See 'Appendix E: Vim Syntax Highlighter' in the AsciiDoc 'User
 "               Guide'.
 
-if exists("b:current_syntax")
+if exists('b:current_syntax')
   finish
 endif
 
@@ -168,6 +168,6 @@ highlight link asciidocToDo Todo
 highlight link asciidocTriplePlusPassthrough Special
 highlight link asciidocTwoLineTitle Title
 highlight link asciidocURL Macro
-let b:current_syntax = "asciidoc"
+let b:current_syntax = 'asciidoc'
 
 " vim: wrap et sw=2 sts=2:

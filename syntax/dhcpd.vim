@@ -8,15 +8,15 @@
 " React to possibly already-defined syntax.
 " For version 5.x: Clear all syntax items unconditionally
 " For version 6.x: Quit when a syntax file was already loaded
-if version >= 600
-  if exists("b:current_syntax")
+if v:version >= 600
+  if exists('b:current_syntax')
     finish
   endif
 else
   syntax clear
 endif
 
-if version >= 600
+if v:version >= 600
   setlocal iskeyword=_,-,.,a-z,A-Z,48-57
 else
   set iskeyword=_,-,.,a-z,A-Z,48-57
@@ -123,8 +123,8 @@ syn match dhcpdConstant "\<\(un\)\?known clients\>"
 " Define the default highlighting {{{
 " For version 5.7 and earlier: Only when not done already
 " For version 5.8 and later: Only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_dhcpd_syntax_inits")
-  if version < 508
+if v:version >= 508 || !exists('did_dhcpd_syntax_inits')
+  if v:version < 508
     let did_pam_syntax_inits = 1
     command -nargs=+ HiLink hi link <args>
   else
@@ -150,5 +150,5 @@ if version >= 508 || !exists("did_dhcpd_syntax_inits")
   delcommand HiLink
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
-let b:current_syntax = "dhcpd"
+let b:current_syntax = 'dhcpd'
 
